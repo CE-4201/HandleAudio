@@ -3,14 +3,12 @@ import getSendToTranscribe
 import time
 
 bucketName = "pre-transcribed-mp3-bucket"
-sendToS3Response = handleS3.uploadToS3('./audioFiles/test1.mp3', bucketName, "test1.mp3")
-getSendToTranscribeResponse = getSendToTranscribe.fetch("test1.mp3")
-audioLen = handleS3.findAudioLength("test1.mp3")
-print("waiting ", audioLen, " seconds")
+fileName = "yisakgit .mp3"
+sendToS3Response = handleS3.uploadToS3(f'./audioFiles/{fileName}', bucketName, fileName)
+getSendToTranscribeResponse = getSendToTranscribe.fetch(fileName)
+print(f"Send to Transcribe Lambda: Transcription Job {getSendToTranscribeResponse} sent")
+audioLen = handleS3.findAudioLength(fileName)
+print("S3 Retrieval: Waiting", audioLen, "seconds")
 time.sleep(audioLen)
-transcription = handleS3.fetch_transcription("test1.mp3")
+transcription = handleS3.fetch_transcription(getSendToTranscribeResponse)
 print(transcription)
-
-
-
-

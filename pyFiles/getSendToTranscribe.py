@@ -5,6 +5,9 @@ def fetch(fileName):
     sendToTranscribeResponse = requests.get(url)
 
     if sendToTranscribeResponse.status_code == 200:
-        print(sendToTranscribeResponse.json())
+        response_json = sendToTranscribeResponse.json()
+        return response_json['transcriptionJobName']
     else:
         print(f'Failed to get data: {sendToTranscribeResponse.status_code}')
+        return None
+
