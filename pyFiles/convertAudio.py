@@ -1,4 +1,3 @@
-import boto3
 import base64
 
 def encodeMp3(filePath):
