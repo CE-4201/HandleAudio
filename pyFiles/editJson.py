@@ -15,3 +15,20 @@ def write_message_to_json(msg_type, msg_content):
     with open(json_file_path, 'w') as f:
         json.dump(messages, f)
 
+def clear_messages_json():
+    file_path = "../frontend/assets/messages.json"
+    with open(file_path, 'w') as f:
+        json.dump([], f)
+        print("messages.json cleared")
+
+def delete_all_files_in_audioFiles():
+    directory = "./audioFiles"
+    for filename in os.listdir(directory):
+        file_path = os.path.join(directory, filename)
+        try:
+            if os.path.isfile(file_path):
+                os.unlink(file_path)
+        except Exception as e:
+            print(f"Failed to delete {file_path}. Reason: {e}")
+
+

@@ -51,32 +51,40 @@ class Recorder:
 def main_function(fileName: str):
     stream_params = StreamParams()
     recorder = Recorder(stream_params)
-    recording = False  # Flag for recording state
-    keep_running = True  # Flag for loop control
+    recording = False
+    keep_running = True
+    last_keypress_time = 0  # For debouncing the 'd' key
+    debounce_interval = 0.5  # 500 milliseconds for the 'd' key
 
     def start_recording(e):
-        nonlocal recording
-        if not recording:
+        nonlocal recording, last_keypress_time
+        current_time = time.time()
+        if not recording and current_time - last_keypress_time > debounce_interval:
             recorder.start_recording()
             recording = True
+            last_keypress_time = current_time
 
     def stop_recording(e):
-        nonlocal recording, keep_running
-        if recording:
+        nonlocal recording, keep_running, last_keypress_time
+        current_time = time.time()
+        if recording and current_time - last_keypress_time > debounce_interval:
             recorder.stop_recording(f"./audioFiles/{fileName}")
             recording = False
-            print("Press 'Enter' to continue.")  # Prompt user
-            input()  # Wait for Enter key
-            keep_running = False  # Set this flag to False to end the loop
+            last_keypress_time = current_time
+            print("Press 'Enter' to continue.")
+            input()  # Wait for Enter key without debounce
+            keep_running = False
 
     keyboard.on_press_key("d", start_recording)
     keyboard.on_release_key("d", stop_recording)
 
     print("Listening for keypresses... Press 'd' to start and stop recording.")
 
-    while keep_running:  # Use the flag here
+    while keep_running:
         if recording:
             recorder.record_chunk()
+
+    keyboard.unhook_all()  # Remove all keyboard hooks
 
 def createFileName():
     return f"recording_{int(time.time() * 1000)}.wav"

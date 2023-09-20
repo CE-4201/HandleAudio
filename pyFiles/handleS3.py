@@ -39,6 +39,3 @@ def fetch_transcription(fileName, retry_count=3):
 
     return None
 
-
-
-

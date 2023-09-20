@@ -4,6 +4,9 @@ import time
 import editJson
 import handleMic
 
+editJson.clear_messages_json()
+editJson.delete_all_files_in_audioFiles()
+
 while True:
     fileName = handleMic.createFileName()
     print(fileName)
