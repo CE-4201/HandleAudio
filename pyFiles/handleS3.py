@@ -1,5 +1,5 @@
 import boto3
-from mutagen.mp3 import MP3
+import wave
 import json
 import time
 
@@ -9,9 +9,11 @@ def uploadToS3(file_path, bucket, fileName):
     s3.upload_file(file_path, bucket, fileName)
     print(f"S3 Upload: Successfully uploaded {fileName} to {bucket}.")
 
-def findAudioLength(fileName) :
-    audio = MP3(f"./audioFiles/{fileName}")
-    audioLength = audio.info.length + 3
+def findAudioLength(fileName):
+    with wave.open(f"./audioFiles/{fileName}", "rb") as wav_file:
+        frames = wav_file.getnframes()
+        rate = wav_file.getframerate()
+        audioLength = frames / float(rate)
     return audioLength
 
 def fetch_transcription(fileName, retry_count=3):
