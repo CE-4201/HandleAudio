@@ -4,7 +4,7 @@ import time
 import editJson
 
 bucketName = "pre-transcribed-mp3-bucket"
-fileName = "jollibee.mp3"
+fileName = "dell.mp3"
 sendToS3Response = handleS3.uploadToS3(f'./audioFiles/{fileName}', bucketName, fileName)
 getSendToTranscribeResponse = getSendToTranscribe.fetch(fileName)
 print(f"Send to Transcribe Lambda: Transcription Job {getSendToTranscribeResponse} sent")
