@@ -1,15 +1,1 @@
-[
-  {
-    "type": "transcribed",
-    "message": "Registers a ou pipeline and hardware fashion."
-  },
-  {
-    "type": "recieved",
-    "message": "Registers, in the context of computer architecture, refer to small storage units within a computer's central processing unit (CPU). These registers store data that is being actively used by the CPU during program execution. There are various types of registers used in a typical"
-  },
-  { "type": "transcribed", "message": "" },
-  {
-    "type": "recieved",
-    "message": "The default value is a predetermined value that is assigned to a variable if no other value is provided. It is typically used to ensure that the variable has a value even if the user does not provide one."
-  }
-]
+[{"type": "transcribed", "message": "I am testing this app."}, {"type": "recieved", "message": "That's great! Is there anything specific you would like to test or do you need any assistance with the app?"}, {"type": "transcribed", "message": "How are you today?"}, {"type": "recieved", "message": "As an AI, I don't have feelings, but thank you for asking! How can I assist you today?"}]

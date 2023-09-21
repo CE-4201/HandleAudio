@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "center",
+    paddingVertical: 16,
   },
   button: {
     backgroundColor: "rgba(40, 0, 168, 0.4)",

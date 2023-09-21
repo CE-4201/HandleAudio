@@ -8,7 +8,7 @@ import time
 @dataclass
 class StreamParams:
     format: int = pyaudio.paInt16
-    channels: int = 2
+    channels: int = 1
     rate: int = 44100
     frames_per_buffer: int = 1024
     input: bool = True
