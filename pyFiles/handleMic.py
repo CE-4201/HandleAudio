@@ -8,7 +8,7 @@ import time
 @dataclass
 class StreamParams:
     format: int = pyaudio.paInt16
-    channels: int = 2
+    channels: int = 1
     rate: int = 44100
     frames_per_buffer: int = 1024
     input: bool = True
@@ -72,11 +72,14 @@ def main_function(fileName: str):
             recording = False
             last_keypress_time = current_time
             print("Press 'Enter' to continue.")
-            input()  # Wait for Enter key without debounce
-            keep_running = False
+
+    def handle_enter(e):
+        nonlocal keep_running
+        keep_running = False
 
     keyboard.on_press_key("d", start_recording)
     keyboard.on_release_key("d", stop_recording)
+    keyboard.on_press_key("enter", handle_enter)
 
     print("Listening for keypresses... Press 'd' to start and stop recording.")
 

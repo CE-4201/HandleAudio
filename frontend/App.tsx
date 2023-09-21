@@ -4,6 +4,7 @@ import Transcribed from "./components/transcribed";
 import Title from "./components/title";
 import Received from "./components/received";
 import messagesData from "./assets/messages.json";
+import Mic from "./components/mic";
 
 interface MessageType {
   type: string;
@@ -36,6 +37,7 @@ export default function App() {
         keyExtractor={(item, index) => index.toString()}
         showsVerticalScrollIndicator={false}
       />
+      <Mic />
     </View>
   );
 }
@@ -47,6 +49,6 @@ const styles = StyleSheet.create({
     paddingBottom: 16,
   },
   listContainer: {
-    height: screenHeight - 56,
+    height: screenHeight - 56 - 136 - 50 - 16,
   },
 });
